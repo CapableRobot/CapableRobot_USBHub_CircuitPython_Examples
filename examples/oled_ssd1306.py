@@ -1,4 +1,3 @@
-import os, sys, inspect
 import time
 
 import bridge
@@ -9,6 +8,8 @@ hub.i2c.enable()
 
 import adafruit_ssd1306
 oled = adafruit_ssd1306.SSD1306_I2C(128, 32, hub.i2c, addr=0x3C)
+
+print(" -- Running -- ")
 
 while True:
     try:
