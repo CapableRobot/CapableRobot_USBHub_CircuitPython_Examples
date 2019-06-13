@@ -1,5 +1,5 @@
 
-lib/CapableRobot_CircuitPython_USBHub_Bridge
+lib/CapableRobot_USBHub_Driver
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
