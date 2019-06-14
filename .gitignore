@@ -1,5 +1,5 @@
 
-lib/driver
+usbhub_driver
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
