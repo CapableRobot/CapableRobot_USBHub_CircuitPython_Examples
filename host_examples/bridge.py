@@ -1,12 +1,12 @@
 import os, sys, inspect
 
 this_folder = os.path.split(inspect.getfile( inspect.currentframe() ))[0]
-bridge_folder = os.path.join(this_folder, '..', 'lib', 'CapableRobot_USBHub_Driver')
+bridge_folder = os.path.join(this_folder, '..', 'usbhub_driver')
 
 if os.path.exists(bridge_folder):
     os.system("cd {} && git pull".format(bridge_folder))
 else:
-    os.system("cd {}/../lib/ && git clone https://github.com/CapableRobot/CapableRobot_USBHub_Driver.git".format(this_folder))
+    os.system("cd {}/../lib/ && git clone https://github.com/CapableRobot/CapableRobot_USBHub_Driver.git usbhub_driver".format(this_folder))
 
 for folder in [bridge_folder, os.path.join('..', 'lib')]:
     lib_folder = os.path.join(this_folder, folder)
