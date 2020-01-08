@@ -14,10 +14,6 @@ def run(delay, report):
     delay = float(delay) / 1000.0
 
     hub = capablerobot_usbhub.USBHub()
-    success = hub.i2c.enable()
-
-    print("USB Enable {}".format(success))
-
     oled = adafruit_ssd1306.SSD1306_I2C(128, 32, hub.i2c, addr=0x3C)
 
     print(" -- Running -- ")
