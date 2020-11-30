@@ -9,7 +9,7 @@ For control of the USB Hub over the Host USB Port, please install the [Host Driv
 To enable this USB-serial control and monitoring interface, the MCU's firmware must be upgraded.  To do this:
 
 - First download the current release of MCU firmware from the [Firmware Repository](https://github.com/CapableRobot/CapableRobot_USBHub_Firmware).
-- Copy the contents of the 'lib' folder from the downloaded code to the USB Hub's `CIRCUITPY/lib` folder, which will appear as a USB mass-storage drive once the MCU port is connected to a host, and power applied to the USB Hub.
+- Copy the contents of the 'lib' folder from the downloaded code to the USB Hub's 'CIRCUITPY/lib' folder, which will appear as a USB mass-storage drive once the MCU port is connected to a host, and power applied to the USB Hub.
 - Copy the 'code.py' and 'capablerobot_host.py' files within the 'mcu' folder in this repository to the mounted CIRCUITPY drive.
 - Reboot the USB Hub
 
