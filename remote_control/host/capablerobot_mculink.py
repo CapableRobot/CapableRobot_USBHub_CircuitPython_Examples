@@ -8,8 +8,9 @@ _SLIP_ESC_END = 0xDC
 _SLIP_ESC_ESC = 0xDD
 _EOT = 0x04
 
-_CMD_PORT_POWER_EN = 0xA0
-_CMD_PORT_DATA_EN  = 0xA1
+_CHR_OFFSET        = 0x30
+_CMD_PORT_POWER_EN = 0x41
+_CMD_PORT_DATA_EN  = 0x42
 
 class USBHub():
 
@@ -75,26 +76,26 @@ class USBHub():
 
     def power_enable(self, ports=[]):
         for port in ports:
-            self.write([_CMD_PORT_POWER_EN, port, True])
+            self.write([_CMD_PORT_POWER_EN, port+_CHR_OFFSET, _CHR_OFFSET+1])
 
     def power_disable(self, ports=[]):
         for port in ports:
-            self.write([_CMD_PORT_POWER_EN, port, False])
+            self.write([_CMD_PORT_POWER_EN, port+_CHR_OFFSET, _CHR_OFFSET])
 
     def power_state(self):
-        value = self.write([_CMD_PORT_POWER_EN, 0, 0])[2:]
+        value = self.write([_CMD_PORT_POWER_EN, _CHR_OFFSET, _CHR_OFFSET])[2:]
         return ["on" if idx else "off" for idx in value]
 
     def data_enable(self, ports=[]):
         for port in ports:
-            self.write([_CMD_PORT_DATA_EN, port, True])
+            self.write([_CMD_PORT_DATA_EN, port+_CHR_OFFSET, _CHR_OFFSET+1])
 
     def data_disable(self, ports=[]):
         for port in ports:
-            self.write([_CMD_PORT_DATA_EN, port, False])
+            self.write([_CMD_PORT_DATA_EN, port+_CHR_OFFSET, _CHR_OFFSET])
 
     def data_state(self):
-        value = self.write([_CMD_PORT_DATA_EN, 0, 0])[2:]
+        value = self.write([_CMD_PORT_DATA_EN, _CHR_OFFSET, _CHR_OFFSET])[2:]
         return ["on" if idx else "off" for idx in value]
 
 COL_WIDTH = 12

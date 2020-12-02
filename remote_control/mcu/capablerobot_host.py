@@ -11,8 +11,9 @@ _SLIP_ESC_END = 0xDC
 _SLIP_ESC_ESC = 0xDD
 _EOT = 0x04
 
-_CMD_PORT_POWER_EN = 0xA0
-_CMD_PORT_DATA_EN  = 0xA1
+_CHR_OFFSET        = 0x30
+_CMD_PORT_POWER_EN = 0x41
+_CMD_PORT_DATA_EN  = 0x42
 
 class Host():
 
@@ -105,8 +106,8 @@ class Host():
                 self._buf_msg.append(byte)
 
     def exec_port_power(self):
-        port = self._buf_msg[1]
-        value = self._buf_msg[2]
+        port  = self._buf_msg[1] - _CHR_OFFSET
+        value = self._buf_msg[2] - _CHR_OFFSET
 
         if port == 0:
             return self.hub.power_state()
@@ -119,8 +120,8 @@ class Host():
         return None
 
     def exec_port_data(self):
-        port = self._buf_msg[1]
-        value = self._buf_msg[2]
+        port  = self._buf_msg[1] - _CHR_OFFSET
+        value = self._buf_msg[2] - _CHR_OFFSET
 
         if port == 0:
             return self.hub.data_state()
