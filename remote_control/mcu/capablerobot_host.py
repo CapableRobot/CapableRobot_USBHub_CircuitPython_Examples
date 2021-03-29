@@ -124,7 +124,12 @@ class Host():
         value = self._buf_msg[2] - _CHR_OFFSET
 
         if port == 0:
-            return self.hub.data_state()
+            return self.hub.data_state() + [not self.hub.pin_hen.value]
+
+        if port == 5:
+            ## Handle host port control
+            self.hub.upstream(state=value)
+            return None
 
         if value:
             self.hub.data_enable(ports=[port])

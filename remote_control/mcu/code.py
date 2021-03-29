@@ -123,7 +123,11 @@ while True:
             color = (LED_BRIGHT,LED_BRIGHT,LED_BRIGHT)
 
         if idx == 0:
-            if speed == 0b00:
+            if usb.pin_hen.value == True:
+                ## If the upstream port is disabled, light the LED orange
+                color = (LED_BRIGHT,int(LED_BRIGHT/2),0)
+                upstream_state = 'down'
+            elif speed == 0b00:
                 ## If the upstream port is disconnected, light the 
                 ## LED red and record that the link is down
                 color = (LED_BRIGHT,0,0)

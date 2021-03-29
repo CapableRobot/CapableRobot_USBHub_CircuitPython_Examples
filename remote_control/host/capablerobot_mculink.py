@@ -119,7 +119,7 @@ def data():
     pass
 
 @data.command()
-@click.option('--port', default=None, help='Comma separated list of ports (1 thru 4) to act upon.')
+@click.option('--port', default=None, help='Comma separated list of ports (1 thru 5) to act upon. For upstream host control, use port 5.')
 @click.option('--on', default=False, is_flag=True, help='Enable data to the listed ports.')
 @click.option('--off', default=False, is_flag=True, help='Disable data to the listed ports.')
 def state(port, on, off):
@@ -141,7 +141,7 @@ def state(port, on, off):
     elif off:
         hub.data_disable(ports=port)
     else:
-        _print_row(PORTS)
+        _print_row(PORTS + ["Host"])
         _print_row(hub.data_state())
         # _print_row(hub.speeds())
 
