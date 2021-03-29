@@ -17,7 +17,7 @@ Your Hub should now respond to the USB serial commands via the Host software (se
 
 ## Installation on the Host
 
-- Download the 'capablerobot_host.py' inside of the 'host' folder.
+- Download the 'capablerobot_mculink.py' inside of the 'host' folder.
 - Install depedencies : `pip install pyserial` and `pip install click`
 - Run : `python capablerobot_mculink.py --help`
 
