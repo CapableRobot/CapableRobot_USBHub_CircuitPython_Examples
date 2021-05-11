@@ -59,6 +59,8 @@ upstream_last_time = boot_time
 
 
 def reset():
+    global upstream_state, upstream_last_time
+
     usb.reset()
     usb.configure()
     usb.set_mcp_config()
@@ -172,9 +174,10 @@ while True:
 
     led_pwr.update()
 
-    if upstream_state == 'down' and time.monotonic() - upstream_last_time > upstream_timeout:
-        stdout("--- RESET DUE TO LINK LOSS ---")
-        reset()
+    if usb.config['reset_on_link_loss'] and upstream_state == 'down':
+        if time.monotonic() - upstream_last_time > usb.config['link_loss_delay']:
+            stdout("--- RESET DUE TO LINK LOSS ---")
+            reset()
 
 
 
