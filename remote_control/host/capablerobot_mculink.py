@@ -83,8 +83,12 @@ class USBHub():
             self.write([_CMD_PORT_POWER_EN, port+_CHR_OFFSET, _CHR_OFFSET])
 
     def power_state(self):
-        value = self.write([_CMD_PORT_POWER_EN, _CHR_OFFSET, _CHR_OFFSET])[2:]
-        return ["on" if idx else "off" for idx in value]
+        value = self.write([_CMD_PORT_POWER_EN, _CHR_OFFSET, _CHR_OFFSET])
+
+        if value is None:
+            return
+
+        return ["on" if idx else "off" for idx in value[2:]]
 
     def data_enable(self, ports=[]):
         for port in ports:
@@ -95,14 +99,22 @@ class USBHub():
             self.write([_CMD_PORT_DATA_EN, port+_CHR_OFFSET, _CHR_OFFSET])
 
     def data_state(self):
-        value = self.write([_CMD_PORT_DATA_EN, _CHR_OFFSET, _CHR_OFFSET])[2:]
-        return ["on" if idx else "off" for idx in value]
+        value = self.write([_CMD_PORT_DATA_EN, _CHR_OFFSET, _CHR_OFFSET])
+
+        if value is None:
+            return
+
+        return ["on" if idx else "off" for idx in value[2:]]
 
 COL_WIDTH = 12
 PORTS = ["Port {}".format(num) for num in [1,2,3,4]]
 
 
 def _print_row(data):
+    if data is None:
+        print("Communication error, please try again")
+        return
+        
     print(*[str(v).rjust(COL_WIDTH) for v in data])
 
 @click.group()
